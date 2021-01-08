@@ -1,0 +1,19 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "moe.sqwatermark.worldguard.mixins",
+  "mixins": [
+    "MixinBlockConcretePowder",
+    "MixinBlockFarmland",
+    "MixinBlockFrostedIce",
+    "MixinBlockGravel",
+    "MixinBlockIce",
+    "MixinBlockLeaves",
+    "MixinBlockSand",
+    "MixinBlockSnow",
+    "MixinBlockSnowBlock",
+    "MixinWorld",
+    "MixinWorldServer"
+  ],
+  "client": [],
+  "server": []
+}

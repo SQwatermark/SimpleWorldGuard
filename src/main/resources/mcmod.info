@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "worldguard",
+    "name": "WorldGuard",
+    "description": "A mod to protect your world form random things",
+    "version": "${version}",
+    "mcversion": "1.12.2",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "SQwatermark"
+    ],
+    "credits": "The Forge and FML guys, for making this example",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
