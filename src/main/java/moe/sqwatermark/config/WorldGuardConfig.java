@@ -47,6 +47,14 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.earth.canSnowSpawn")
     public static boolean canSnowSpawn = true;
 
+    @Config.Comment("草方块是否会扩散")
+    @Config.LangKey("config.worldguard.earth.canGrassSpread")
+    public static boolean canGrassSpread = true;
+
+    @Config.Comment("菌丝是否会扩散")
+    @Config.LangKey("config.worldguard.earth.canMyceliumSpread")
+    public static boolean canMyceliumSpread = true;
+
     @Config.Comment("沙子/红沙是否会下落")
     @Config.LangKey("config.worldguard.earth.canSandFall")
     public static boolean canSandFall = true;
