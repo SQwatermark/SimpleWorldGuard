@@ -65,6 +65,10 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.entity.canEndermanMoveBlock")
     public static boolean canEndermanMoveBlock = true;
 
+    @Config.Comment("雪人是否产生雪")
+    @Config.LangKey("config.worldguard.entity.canSnowmanSpawnSnow")
+    public static boolean canSnowmanSpawnSnow = true;
+
     //*************************** 杂项 ****************************//
     @Config.Comment("末影人是否会搬走或者放置方块")
     @Config.LangKey("config.worldguard.misc.canEggSpawnChicken")

@@ -2,6 +2,7 @@ package moe.sqwatermark.worldguard;
 
 import moe.sqwatermark.config.WorldGuardConfig;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -54,7 +55,8 @@ public class WorldGuard {
     @SubscribeEvent
     public static void handleEntityMobGriefing(EntityMobGriefingEvent event) {
         // 阻止末影人搬走或放置方块
-        if (event.getEntity() instanceof EntityEnderman && !WorldGuardConfig.canEndermanMoveBlock) event.setCanceled(true);
+        if (event.getEntity() instanceof EntityEnderman && !WorldGuardConfig.canEndermanMoveBlock) event.setResult(Event.Result.DENY);
+        else if (event.getEntity() instanceof EntitySnowman && !WorldGuardConfig.canSnowmanSpawnSnow) event.setResult(Event.Result.DENY);
     }
 
     // 阻止鸡蛋生成鸡
@@ -72,7 +74,6 @@ public class WorldGuard {
             }
         }
     }
-
 
     /**
      * 同步配置文件
