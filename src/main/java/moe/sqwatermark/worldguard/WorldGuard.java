@@ -11,6 +11,7 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -72,6 +73,14 @@ public class WorldGuard {
                 throwable.world.setEntityState(throwable, (byte)3);
                 throwable.setDead();
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onExplosion(ExplosionEvent event) {
+        // 防止爆炸破坏方块
+        if (!WorldGuardConfig.canExplosionDamageBlock) {
+            event.getExplosion().clearAffectedBlockPositions();
         }
     }
 

@@ -13,6 +13,7 @@
     "MixinBlockSand",
     "MixinBlockSnow",
     "MixinBlockSnowBlock",
+    "MixinBlockVine",
     "MixinWorld",
     "MixinWorldServer"
   ],

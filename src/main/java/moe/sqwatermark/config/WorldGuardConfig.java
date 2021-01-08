@@ -7,7 +7,6 @@ import net.minecraftforge.common.config.Config;
 public final class WorldGuardConfig {
 
     //*************************** 农田 ****************************//
-
     @Config.Comment("农作物是否会生长")
     @Config.LangKey("config.worldguard.farm.canCropGrow")
     public static boolean canCropGrow = true;
@@ -25,7 +24,6 @@ public final class WorldGuardConfig {
     public static boolean canFarmlandDry = true;
 
     //*************************** 植被 ****************************//
-
     @Config.Comment("树叶是否会更新随机刻，设为false可防止树叶掉落")
     @Config.LangKey("config.worldguard.plants.canLeavesTick")
     public static boolean canLeavesTick = true;
@@ -68,7 +66,6 @@ public final class WorldGuardConfig {
     public static boolean canGravelFall = true;
 
     //*************************** 生物 ****************************//
-
     @Config.Comment("末影人是否会搬走或者放置方块")
     @Config.LangKey("config.worldguard.entity.canEndermanMoveBlock")
     public static boolean canEndermanMoveBlock = true;
@@ -77,8 +74,13 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.entity.canSnowmanSpawnSnow")
     public static boolean canSnowmanSpawnSnow = true;
 
+    //*************************** 防爆 ****************************//
+    @Config.Comment("爆炸是否会破坏方块")
+    @Config.LangKey("config.worldguard.explosion.canExplosionDamageBlock")
+    public static boolean canExplosionDamageBlock = true;
+
     //*************************** 杂项 ****************************//
-    @Config.Comment("末影人是否会搬走或者放置方块")
+    @Config.Comment("鸡蛋是否会生成鸡")
     @Config.LangKey("config.worldguard.misc.canEggSpawnChicken")
     public static boolean canEggSpawnChicken = true;
 
