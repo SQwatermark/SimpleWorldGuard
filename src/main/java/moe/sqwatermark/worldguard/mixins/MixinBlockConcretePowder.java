@@ -17,7 +17,7 @@ public class MixinBlockConcretePowder extends BlockFalling {
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!WorldGuardConfig.canConcretePowderFall) return;
+        if (!WorldGuardConfig.physics.canConcretePowderFall) return;
         super.updateTick(worldIn, pos, state, rand);
     }
 

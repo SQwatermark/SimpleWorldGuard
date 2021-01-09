@@ -18,14 +18,14 @@ public class MixinBlockVine {
 
     @Inject(method = "neighborChanged", at = @At(value = "HEAD"), cancellable = true)
     public void onNeighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, CallbackInfo ci) {
-        if (WorldGuardConfig.canPlantsPlacedEverywhere) {
+        if (WorldGuardConfig.plants.canPlantsPlacedEverywhere) {
             ci.cancel();
         }
     }
 
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     public void onUpdateTick(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.canVineTick) {
+        if (!WorldGuardConfig.plants.canVineTick) {
             ci.cancel();
         }
     }

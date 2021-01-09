@@ -6,96 +6,127 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = WorldGuard.MOD_ID)
 public final class WorldGuardConfig {
 
-    //*************************** 农田 ****************************//
-    @Config.Comment("农作物是否会生长")
-    @Config.LangKey("config.worldguard.farm.canCropGrow")
-    public static boolean canCropGrow = true;
+    @Config.Comment("农田设置")
+    @Config.LangKey("config.worldguard.farm")
+    public static FarmCategory farm = new FarmCategory();
 
-    @Config.Comment("农田是否会被踩坏")
-    @Config.LangKey("config.worldguard.farm.canFarmlandTrample")
-    public static boolean canFarmlandTrample = true;
+    @Config.Comment("植物设置")
+    @Config.LangKey("config.worldguard.plants")
+    public static PlantsCategory plants = new PlantsCategory();
 
-    @Config.Comment("农田是否会更新随机刻")
-    @Config.LangKey("config.worldguard.farm.canFarmlandTick")
-    public static boolean canFarmlandTick = true;
+    @Config.Comment("水、雪、冰设置")
+    @Config.LangKey("config.worldguard.h2o")
+    public static H2OCategory h2o = new H2OCategory();
 
-    @Config.Comment("农田是否会干涸，前置条件为canFarmlandTick = true，此选项仅阻止农田因为缺水而变成泥土，想让你的农作物旺盛成长，还是需要水的")
-    @Config.LangKey("config.worldguard.farm.canFarmlandDry")
-    public static boolean canFarmlandDry = true;
+    @Config.Comment("沙子、混凝土粉末等重力方块的设置")
+    @Config.LangKey("config.worldguard.physics")
+    public static PhysicsCategory physics = new PhysicsCategory();
 
-    //*************************** 植被 ****************************//
-    @Config.Comment("树叶是否会更新随机刻，设为false可防止树叶掉落")
-    @Config.LangKey("config.worldguard.plants.canLeavesTick")
-    public static boolean canLeavesTick = true;
+    @Config.Comment("实体行为设置")
+    @Config.LangKey("config.worldguard.entity")
+    public static EntityCategory entity = new EntityCategory();
 
-    @Config.Comment("草方块是否会扩散")
-    @Config.LangKey("config.worldguard.earth.canGrassSpread")
-    public static boolean canGrassSpread = true;
+    @Config.Comment("爆炸保护设置")
+    @Config.LangKey("config.worldguard.explosion")
+    public static ExplosionCategory explosion = new ExplosionCategory();
 
-    @Config.Comment("菌丝是否会扩散")
-    @Config.LangKey("config.worldguard.earth.canMyceliumSpread")
-    public static boolean canMyceliumSpread = true;
+    @Config(modid = WorldGuard.MOD_ID, category = "farm")
+    public static class FarmCategory {
+        @Config.Comment("农作物是否会生长")
+        @Config.LangKey("config.worldguard.farm.canCropGrow")
+        public boolean canCropGrow = true;
 
-    @Config.Comment("藤蔓是否会更新随机刻，设为false可防止藤蔓生长")
-    @Config.LangKey("config.worldguard.plants.canLeavesTick")
-    public static boolean canVineTick = true;
+        @Config.Comment("农田是否会被踩坏")
+        @Config.LangKey("config.worldguard.farm.canFarmlandTrample")
+        public boolean canFarmlandTrample = true;
 
-    // TODO 还没很好地实现
-    @Config.Comment("植物（藤蔓）是否不需要附着物")
-    @Config.LangKey("config.worldguard.plants.canPlantsPlacedEverywhere")
-    public static boolean canPlantsPlacedEverywhere = false;
+        @Config.Comment("农田是否会更新随机刻")
+        @Config.LangKey("config.worldguard.farm.canFarmlandTick")
+        public boolean canFarmlandTick = true;
 
-    //*************************** 水和冰雪 ****************************//
-    @Config.Comment("冰块和霜冰是否会更新随机刻，设为false可防止冰融化")
-    @Config.LangKey("config.worldguard.earth.canIceTick")
-    public static boolean canIceTick = true;
+        @Config.Comment("农田是否会干涸，前置条件为农田随机刻，此选项仅阻止农田因为缺水而变成泥土，想让你的农作物旺盛成长，还是需要水的")
+        @Config.LangKey("config.worldguard.farm.canFarmlandDry")
+        public boolean canFarmlandDry = true;
+    }
 
-    @Config.Comment("雪片和雪方块是否会更新随机刻，设为false可防止雪融化")
-    @Config.LangKey("config.worldguard.earth.canSnowTick")
-    public static boolean canSnowTick = true;
+    @Config(modid = WorldGuard.MOD_ID, category = "plants")
+    public static class PlantsCategory {
+        @Config.Comment("树叶是否会更新随机刻，设为false可防止树叶掉落")
+        @Config.LangKey("config.worldguard.plants.canLeavesTick")
+        public boolean canLeavesTick = true;
 
-    @Config.Comment("水是否会结冰")
-    @Config.LangKey("config.worldguard.earth.canWaterFreeze")
-    public static boolean canWaterFreeze = true;
+        @Config.Comment("草方块是否会扩散")
+        @Config.LangKey("config.worldguard.plants.canGrassSpread")
+        public boolean canGrassSpread = true;
 
-    @Config.Comment("雪天是否会生成雪片")
-    @Config.LangKey("config.worldguard.earth.canSnowSpawn")
-    public static boolean canSnowSpawn = true;
+        @Config.Comment("菌丝是否会扩散")
+        @Config.LangKey("config.worldguard.plants.canMyceliumSpread")
+        public boolean canMyceliumSpread = true;
 
-    //*************************** 重力 ****************************//
-    @Config.Comment("沙子/红沙是否会下落")
-    @Config.LangKey("config.worldguard.earth.canSandFall")
-    public static boolean canSandFall = true;
+        @Config.Comment("藤蔓是否会更新随机刻，设为false可防止藤蔓生长")
+        @Config.LangKey("config.worldguard.plants.canVineTick")
+        public boolean canVineTick = true;
 
-    @Config.Comment("混凝土粉末是否会下落")
-    @Config.LangKey("config.worldguard.earth.canConcretePowderFall")
-    public static boolean canConcretePowderFall = true;
+        // TODO 还没很好地实现
+        @Config.Comment("植物（藤蔓）是否不需要附着物(还没很好地实现，不要设置这个)")
+        @Config.LangKey("config.worldguard.plants.canPlantsPlacedEverywhere")
+        public boolean canPlantsPlacedEverywhere = false;
+    }
 
-    @Config.Comment("砂砾是否会下落")
-    @Config.LangKey("config.worldguard.earth.canGravelFall")
-    public static boolean canGravelFall = true;
+    @Config(modid = WorldGuard.MOD_ID, category = "h2o")
+    public static class H2OCategory {
+        @Config.Comment("冰块和霜冰是否会更新随机刻，设为false可防止冰融化")
+        @Config.LangKey("config.worldguard.h2o.canIceTick")
+        public boolean canIceTick = true;
 
-    //*************************** 生物 ****************************//
-    @Config.Comment("末影人是否会搬走或者放置方块")
-    @Config.LangKey("config.worldguard.entity.canEndermanMoveBlock")
-    public static boolean canEndermanMoveBlock = true;
+        @Config.Comment("雪片和雪方块是否会更新随机刻，设为false可防止雪融化")
+        @Config.LangKey("config.worldguard.h2o.canSnowTick")
+        public boolean canSnowTick = true;
 
-    @Config.Comment("雪人是否产生雪")
-    @Config.LangKey("config.worldguard.entity.canSnowmanSpawnSnow")
-    public static boolean canSnowmanSpawnSnow = true;
+        @Config.Comment("水是否会结冰")
+        @Config.LangKey("config.worldguard.h2o.canWaterFreeze")
+        public boolean canWaterFreeze = true;
 
-    //*************************** 防爆 ****************************//
-    @Config.Comment("爆炸是否会破坏方块")
-    @Config.LangKey("config.worldguard.explosion.canExplosionDamageBlock")
-    public static boolean canExplosionDamageBlock = true;
+        @Config.Comment("雪天是否会产生积雪")
+        @Config.LangKey("config.worldguard.h2o.canSnowSpawn")
+        public boolean canSnowSpawn = true;
+    }
 
-    //*************************** 杂项（可以放到其他模块） ****************************//
-//    @Config.Comment("鸡蛋是否会生成鸡")
-//    @Config.LangKey("config.worldguard.misc.canEggSpawnChicken")
-//    public static boolean canEggSpawnChicken = true;
-//
-//    @Config.Comment("蛛网是否会造成减速")
-//    @Config.LangKey("config.worldguard.misc.canWebCollide")
-//    public static boolean canWebCollide = true;
+    @Config(modid = WorldGuard.MOD_ID, category = "physics")
+    public static class PhysicsCategory {
+        @Config.Comment("沙子/红沙是否会下落")
+        @Config.LangKey("config.worldguard.physics.canSandFall")
+        public boolean canSandFall = true;
+
+        @Config.Comment("混凝土粉末是否会下落")
+        @Config.LangKey("config.worldguard.physics.canConcretePowderFall")
+        public boolean canConcretePowderFall = true;
+
+        @Config.Comment("砂砾是否会下落")
+        @Config.LangKey("config.worldguard.physics.canGravelFall")
+        public boolean canGravelFall = true;
+    }
+
+    @Config(modid = WorldGuard.MOD_ID, category = "entity")
+    public static class EntityCategory {
+        @Config.Comment("末影人是否会搬走或者放置方块")
+        @Config.LangKey("config.worldguard.entity.canEndermanMoveBlock")
+        public boolean canEndermanMoveBlock = true;
+
+        @Config.Comment("雪人是否产生雪")
+        @Config.LangKey("config.worldguard.entity.canSnowmanSpawnSnow")
+        public boolean canSnowmanSpawnSnow = true;
+    }
+
+    @Config(modid = WorldGuard.MOD_ID, category = "explosion")
+    public static class ExplosionCategory {
+        @Config.Comment("爆炸是否会破坏方块，如果设置为false，所有方块都会被保护")
+        @Config.LangKey("config.worldguard.explosion.canExplosionDamageBlock")
+        public boolean canExplosionDamageBlock = true;
+
+        @Config.Comment("不会受到爆炸影响的方块列表，请填写带有命名空间的完整id")
+        @Config.LangKey("config.worldguard.explosion.explosionProtectedBlocks")
+        public String[] explosionProtectedBlocks = new String[] { "minecraft:chest" };
+    }
 
 }

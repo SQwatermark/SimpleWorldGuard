@@ -14,7 +14,7 @@ public class MixinWorld {
     // 阻止水结冰
     @Inject(method = "canBlockFreezeNoWater", at = @At(value = "HEAD"), cancellable = true)
     public void canBlockFreezeNoWater(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (!WorldGuardConfig.canWaterFreeze) {
+        if (!WorldGuardConfig.h2o.canWaterFreeze) {
             cir.setReturnValue(false);
         }
     }

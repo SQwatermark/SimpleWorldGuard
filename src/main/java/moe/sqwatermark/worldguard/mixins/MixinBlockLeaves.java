@@ -17,7 +17,7 @@ public class MixinBlockLeaves {
 
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     public void onUpdateTick(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.canLeavesTick) {
+        if (!WorldGuardConfig.plants.canLeavesTick) {
             ci.cancel();
         }
     }

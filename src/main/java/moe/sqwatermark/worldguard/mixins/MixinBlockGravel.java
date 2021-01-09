@@ -16,7 +16,7 @@ public class MixinBlockGravel extends BlockFalling {
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!WorldGuardConfig.canGravelFall) return;
+        if (!WorldGuardConfig.physics.canGravelFall) return;
         super.updateTick(worldIn, pos, state, rand);
     }
 

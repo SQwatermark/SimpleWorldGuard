@@ -16,7 +16,7 @@ public class MixinBlockBush {
 
     @Inject(method = "neighborChanged", at = @At("HEAD"), cancellable = true)
     public void onNeighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, CallbackInfo ci) {
-        if (WorldGuardConfig.canPlantsPlacedEverywhere) {
+        if (WorldGuardConfig.plants.canPlantsPlacedEverywhere) {
             ci.cancel();
         }
     }

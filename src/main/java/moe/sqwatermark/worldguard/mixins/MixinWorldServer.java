@@ -16,7 +16,7 @@ public class MixinWorldServer {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/WorldServer;canSnowAt(Lnet/minecraft/util/math/BlockPos;Z)Z")
     )
     private boolean redirect_canSnowAt(WorldServer worldServer, BlockPos pos, boolean checkLight) {
-        if (WorldGuardConfig.canSnowSpawn) {
+        if (WorldGuardConfig.h2o.canSnowSpawn) {
             return worldServer.canSnowAt(pos, checkLight);
         } else {
             // 阻止雪天积雪

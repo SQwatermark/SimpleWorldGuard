@@ -18,7 +18,7 @@ public class MixinBlockGrass {
     // 或许得用一种更好的方法来判断
     @Inject(method = "updateTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;)Z", ordinal = 1), cancellable = true)
     public void onUpdateTick2(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.canGrassSpread) {
+        if (!WorldGuardConfig.plants.canGrassSpread) {
             ci.cancel();
         }
     }

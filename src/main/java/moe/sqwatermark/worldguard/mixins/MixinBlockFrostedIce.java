@@ -17,7 +17,7 @@ public class MixinBlockFrostedIce {
 
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     public void onUpdateTick(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.canIceTick) {
+        if (!WorldGuardConfig.h2o.canIceTick) {
             ci.cancel();
         }
     }

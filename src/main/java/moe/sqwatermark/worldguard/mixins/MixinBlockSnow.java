@@ -18,7 +18,7 @@ public class MixinBlockSnow {
 
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     public void onUpdateTick(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.canSnowTick) {
+        if (!WorldGuardConfig.h2o.canSnowTick) {
             ci.cancel();
         }
     }
