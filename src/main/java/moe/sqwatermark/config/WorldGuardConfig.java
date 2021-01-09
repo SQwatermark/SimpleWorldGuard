@@ -28,7 +28,24 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.plants.canLeavesTick")
     public static boolean canLeavesTick = true;
 
-    //*************************** 地面 ****************************//
+    @Config.Comment("草方块是否会扩散")
+    @Config.LangKey("config.worldguard.earth.canGrassSpread")
+    public static boolean canGrassSpread = true;
+
+    @Config.Comment("菌丝是否会扩散")
+    @Config.LangKey("config.worldguard.earth.canMyceliumSpread")
+    public static boolean canMyceliumSpread = true;
+
+    @Config.Comment("藤蔓是否会更新随机刻，设为false可防止藤蔓生长")
+    @Config.LangKey("config.worldguard.plants.canLeavesTick")
+    public static boolean canVineTick = true;
+
+    // TODO 还没很好地实现
+    @Config.Comment("植物（藤蔓）是否不需要附着物")
+    @Config.LangKey("config.worldguard.plants.canPlantsPlacedEverywhere")
+    public static boolean canPlantsPlacedEverywhere = false;
+
+    //*************************** 水和冰雪 ****************************//
     @Config.Comment("冰块和霜冰是否会更新随机刻，设为false可防止冰融化")
     @Config.LangKey("config.worldguard.earth.canIceTick")
     public static boolean canIceTick = true;
@@ -45,14 +62,7 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.earth.canSnowSpawn")
     public static boolean canSnowSpawn = true;
 
-    @Config.Comment("草方块是否会扩散")
-    @Config.LangKey("config.worldguard.earth.canGrassSpread")
-    public static boolean canGrassSpread = true;
-
-    @Config.Comment("菌丝是否会扩散")
-    @Config.LangKey("config.worldguard.earth.canMyceliumSpread")
-    public static boolean canMyceliumSpread = true;
-
+    //*************************** 重力 ****************************//
     @Config.Comment("沙子/红沙是否会下落")
     @Config.LangKey("config.worldguard.earth.canSandFall")
     public static boolean canSandFall = true;
@@ -79,9 +89,13 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.worldguard.explosion.canExplosionDamageBlock")
     public static boolean canExplosionDamageBlock = true;
 
-    //*************************** 杂项 ****************************//
-    @Config.Comment("鸡蛋是否会生成鸡")
-    @Config.LangKey("config.worldguard.misc.canEggSpawnChicken")
-    public static boolean canEggSpawnChicken = true;
+    //*************************** 杂项（可以放到其他模块） ****************************//
+//    @Config.Comment("鸡蛋是否会生成鸡")
+//    @Config.LangKey("config.worldguard.misc.canEggSpawnChicken")
+//    public static boolean canEggSpawnChicken = true;
+//
+//    @Config.Comment("蛛网是否会造成减速")
+//    @Config.LangKey("config.worldguard.misc.canWebCollide")
+//    public static boolean canWebCollide = true;
 
 }

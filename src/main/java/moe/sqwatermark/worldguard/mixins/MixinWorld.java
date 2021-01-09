@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(World.class)
 public class MixinWorld {
 
+    // 阻止水结冰
     @Inject(method = "canBlockFreezeNoWater", at = @At(value = "HEAD"), cancellable = true)
     public void canBlockFreezeNoWater(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (!WorldGuardConfig.canWaterFreeze) {

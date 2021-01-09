@@ -2,6 +2,7 @@
   "compatibilityLevel": "JAVA_8",
   "package": "moe.sqwatermark.worldguard.mixins",
   "mixins": [
+    "MixinBlockBush",
     "MixinBlockConcretePowder",
     "MixinBlockFarmland",
     "MixinBlockFrostedIce",
