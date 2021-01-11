@@ -1,6 +1,5 @@
 package moe.sqwatermark.simpleworldguard.config;
 
-import moe.sqwatermark.simpleworldguard.ClientProxy;
 import moe.sqwatermark.simpleworldguard.WorldGuard;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -34,6 +33,10 @@ public final class WorldGuardConfig {
     @Config.Comment("爆炸保护设置")
     @Config.LangKey("config.simpleworldguard.explosion")
     public static ExplosionCategory explosion = new ExplosionCategory();
+
+    @Config.Comment("火焰保护设置")
+    @Config.LangKey("config.simpleworldguard.fire")
+    public static FireCategory fire = new FireCategory();
 
     @Config.Comment("自定义游戏标题")
     @Config.LangKey("config.simpleworldguard.customGameTitle")
@@ -130,6 +133,17 @@ public final class WorldGuardConfig {
         @Config.Comment("不会受到爆炸影响的方块列表，请填写带有命名空间的完整id")
         @Config.LangKey("config.simpleworldguard.explosion.explosionProtectedBlocks")
         public String[] explosionProtectedBlocks = new String[] { "minecraft:chest", "minecraft:bed" };
+    }
+
+    public static class FireCategory {
+        @Config.Comment("在doFireTick为false的情况下，火焰也会自动熄灭（不会影响灵魂沙）")
+        @Config.LangKey("config.simpleworldguard.explosion.fireAutoExtinguish")
+        public boolean fireAutoExtinguish = false;
+
+//        TODO 附加火焰保护的方块
+//        @Config.Comment("不会受到爆炸影响的方块列表，请填写带有命名空间的完整id")
+//        @Config.LangKey("config.simpleworldguard.explosion.explosionProtectedBlocks")
+//        public String[] explosionProtectedBlocks = new String[] { "minecraft:chest", "minecraft:bed" };
     }
 
     /**

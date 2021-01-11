@@ -1,4 +1,4 @@
-package moe.sqwatermark.simpleworldguard.mixins;
+package moe.sqwatermark.simpleworldguard.mixins.world;
 
 import moe.sqwatermark.simpleworldguard.config.WorldGuardConfig;
 import net.minecraft.util.math.BlockPos;

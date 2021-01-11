@@ -1,8 +1,7 @@
-package moe.sqwatermark.simpleworldguard.mixins;
+package moe.sqwatermark.simpleworldguard.mixins.block;
 
 import moe.sqwatermark.simpleworldguard.config.WorldGuardConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockVine;
+import net.minecraft.block.BlockFrostedIce;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -13,19 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(BlockVine.class)
-public class MixinBlockVine {
-
-    @Inject(method = "neighborChanged", at = @At(value = "HEAD"), cancellable = true)
-    public void onNeighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, CallbackInfo ci) {
-        if (WorldGuardConfig.plants.canPlantsPlacedEverywhere) {
-            ci.cancel();
-        }
-    }
+@Mixin(BlockFrostedIce.class)
+public class MixinBlockFrostedIce {
 
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     public void onUpdateTick(World worldIn, BlockPos pos, IBlockState state, Random rand, CallbackInfo ci) {
-        if (!WorldGuardConfig.plants.canVineTick) {
+        if (!WorldGuardConfig.h2o.canIceTick) {
             ci.cancel();
         }
     }

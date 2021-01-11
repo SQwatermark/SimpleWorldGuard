@@ -49,13 +49,19 @@ public class WorldGuard {
     //TODO 阻止水流动
     //TODO 阻止水和岩浆合成石头
     //TODO 允许部分方块放在任意地方（花草、红石等）
+    //TODO 生物黑名单，禁止指定生物的生成
+    //TODO 让火不能点燃方块：https://www.mcbbs.net/thread-1151688-1-1.html doFireTick只会阻止火焰蔓延而不会灭火
 
     @SidedProxy(clientSide = "moe.sqwatermark.simpleworldguard.ClientProxy",
             serverSide = "moe.sqwatermark.simpleworldguard.CommonProxy")
     public static CommonProxy proxy;
 
     // 配置文件目录（.minecraft/config/simpleworldguard）
-    public static File modConfigDi;
+    private static File modConfigDi;
+
+    public static File getModConfigDi() {
+        return modConfigDi;
+    }
 
     // 默认的配置文件是在preInit之前读取的所以可以放心使用
     @Mod.EventHandler
