@@ -3,21 +3,25 @@ package moe.sqwatermark.simpleworldguard;
 import moe.sqwatermark.simpleworldguard.config.WorldGuardConfig;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Objects;
 
+/**
+ * @author SQwatermark
+ */
 @Mod.EventBusSubscriber
 @Mod(
         modid = WorldGuard.MOD_ID,
@@ -31,7 +35,7 @@ public class WorldGuard {
     public static final String MOD_ID = "simpleworldguard";
     public static final String MOD_NAME = "SimpleWorldGuard";
     public static final String MOD_VERSION = "@VERSION@";
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static Logger logger;
 
     /*
         一些原版的设置，就不用画蛇添足了
@@ -45,6 +49,32 @@ public class WorldGuard {
     //TODO 阻止水流动
     //TODO 阻止水和岩浆合成石头
     //TODO 允许部分方块放在任意地方（花草、红石等）
+
+    @SidedProxy(clientSide = "moe.sqwatermark.simpleworldguard.ClientProxy",
+            serverSide = "moe.sqwatermark.simpleworldguard.CommonProxy")
+    public static CommonProxy proxy;
+
+    // 配置文件目录（.minecraft/config/simpleworldguard）
+    public static File modConfigDi;
+
+    // 默认的配置文件是在preInit之前读取的所以可以放心使用
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        modConfigDi = Paths.get(event.getModConfigurationDirectory().getAbsolutePath(), "simpleworldguard").toFile();
+        logger = event.getModLog();
+        proxy.preInit(event);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        proxy.init(event);
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
+    }
+
 
     // 阻止作物生长
     @SubscribeEvent
@@ -81,19 +111,6 @@ public class WorldGuard {
                         Objects.requireNonNull(
                                 event.getWorld().getBlockState(blockPos).getBlock().getRegistryName()).toString().equals(explosionProtectedBlock)
                 );
-            }
-        }
-    }
-
-    /**
-     * 同步配置文件
-     */
-    @Mod.EventBusSubscriber(modid = MOD_ID, value = Side.CLIENT)
-    public static class ConfigSyncHandler {
-        @SubscribeEvent
-        public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-            if (event.getModID().equals(MOD_ID)) {
-                ConfigManager.sync(MOD_ID, Config.Type.INSTANCE);
             }
         }
     }

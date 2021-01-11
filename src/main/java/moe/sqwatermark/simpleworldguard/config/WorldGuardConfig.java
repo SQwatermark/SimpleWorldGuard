@@ -1,7 +1,12 @@
 package moe.sqwatermark.simpleworldguard.config;
 
+import moe.sqwatermark.simpleworldguard.ClientProxy;
 import moe.sqwatermark.simpleworldguard.WorldGuard;
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = WorldGuard.MOD_ID)
 public final class WorldGuardConfig {
@@ -30,7 +35,10 @@ public final class WorldGuardConfig {
     @Config.LangKey("config.simpleworldguard.explosion")
     public static ExplosionCategory explosion = new ExplosionCategory();
 
-    @Config(modid = WorldGuard.MOD_ID, category = "farm")
+    @Config.Comment("自定义游戏标题")
+    @Config.LangKey("config.simpleworldguard.customGameTitle")
+    public static String customGameTitle = "";
+
     public static class FarmCategory {
         @Config.Comment("农作物是否会生长")
         @Config.LangKey("config.simpleworldguard.farm.canCropGrow")
@@ -49,7 +57,6 @@ public final class WorldGuardConfig {
         public boolean canFarmlandDry = true;
     }
 
-    @Config(modid = WorldGuard.MOD_ID, category = "plants")
     public static class PlantsCategory {
         @Config.Comment("树叶是否会更新随机刻，设为false可防止树叶掉落")
         @Config.LangKey("config.simpleworldguard.plants.canLeavesTick")
@@ -73,7 +80,6 @@ public final class WorldGuardConfig {
         public boolean canPlantsPlacedEverywhere = false;
     }
 
-    @Config(modid = WorldGuard.MOD_ID, category = "h2o")
     public static class H2OCategory {
         @Config.Comment("冰块和霜冰是否会更新随机刻，设为false可防止冰融化")
         @Config.LangKey("config.simpleworldguard.h2o.canIceTick")
@@ -92,7 +98,6 @@ public final class WorldGuardConfig {
         public boolean canSnowSpawn = true;
     }
 
-    @Config(modid = WorldGuard.MOD_ID, category = "physics")
     public static class PhysicsCategory {
         @Config.Comment("沙子/红沙是否会下落")
         @Config.LangKey("config.simpleworldguard.physics.canSandFall")
@@ -107,7 +112,6 @@ public final class WorldGuardConfig {
         public boolean canGravelFall = true;
     }
 
-    @Config(modid = WorldGuard.MOD_ID, category = "entity")
     public static class EntityCategory {
         @Config.Comment("末影人是否会搬走或者放置方块")
         @Config.LangKey("config.simpleworldguard.entity.canEndermanMoveBlock")
@@ -118,7 +122,6 @@ public final class WorldGuardConfig {
         public boolean canSnowmanSpawnSnow = true;
     }
 
-    @Config(modid = WorldGuard.MOD_ID, category = "explosion")
     public static class ExplosionCategory {
         @Config.Comment("爆炸是否会破坏方块，如果设置为false，所有方块都会被保护")
         @Config.LangKey("config.simpleworldguard.explosion.canExplosionDamageBlock")
@@ -127,6 +130,21 @@ public final class WorldGuardConfig {
         @Config.Comment("不会受到爆炸影响的方块列表，请填写带有命名空间的完整id")
         @Config.LangKey("config.simpleworldguard.explosion.explosionProtectedBlocks")
         public String[] explosionProtectedBlocks = new String[] { "minecraft:chest", "minecraft:bed" };
+    }
+
+    /**
+     * 同步配置文件
+     */
+    @Mod.EventBusSubscriber(modid = WorldGuard.MOD_ID)
+    public static class ConfigSyncHandler {
+        @SubscribeEvent
+        public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+            System.out.println("重载配置文件");
+            if (event.getModID().equals(WorldGuard.MOD_ID)) {
+                ConfigManager.sync(WorldGuard.MOD_ID, Config.Type.INSTANCE);
+            }
+            WorldGuard.proxy.handleConfigChange();
+        }
     }
 
 }
