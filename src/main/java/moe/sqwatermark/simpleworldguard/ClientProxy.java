@@ -49,7 +49,7 @@ public class ClientProxy extends CommonProxy {
 
     public void handleConfigChange() {
         if (!WorldGuardConfig.customGameTitle.isEmpty()) {
-            Display.setTitle("customGameTitle");
+            Display.setTitle(WorldGuardConfig.customGameTitle);
         }
         this.loadCustomIcon();
     }
