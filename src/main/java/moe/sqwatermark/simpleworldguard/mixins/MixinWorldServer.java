@@ -1,6 +1,6 @@
-package moe.sqwatermark.worldguard.mixins;
+package moe.sqwatermark.simpleworldguard.mixins;
 
-import moe.sqwatermark.config.WorldGuardConfig;
+import moe.sqwatermark.simpleworldguard.config.WorldGuardConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,6 +1,6 @@
-package moe.sqwatermark.config;
+package moe.sqwatermark.simpleworldguard.config;
 
-import moe.sqwatermark.worldguard.WorldGuard;
+import moe.sqwatermark.simpleworldguard.WorldGuard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;

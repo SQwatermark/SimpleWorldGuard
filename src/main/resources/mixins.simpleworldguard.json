@@ -1,6 +1,7 @@
 {
   "compatibilityLevel": "JAVA_8",
-  "package": "moe.sqwatermark.worldguard.mixins",
+  "package": "moe.sqwatermark.simpleworldguard.mixins",
+  "refmap": "mixins.simpleworldguard.refmap.json",
   "mixins": [
     "MixinBlockBush",
     "MixinBlockConcretePowder",

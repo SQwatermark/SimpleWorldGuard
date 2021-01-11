@@ -14,7 +14,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = mod_version
 group = mod_group
-archivesBaseName = mod_name
+archivesBaseName = mod_name + "-" + minecraft_version
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -72,18 +72,14 @@ jar {
     }
 
     manifest {
-        attributes "FMLCorePlugin": mod_core_plugin
         attributes "FMLCorePluginContainsFMLMod": "true"
-        attributes "ForceLoadAsMod": "true"
-        attributes "TweakClass": "org.spongepowered.asm.launch.MixinTweaker"
-        attributes "TweakOrder": "0"
-        attributes "MixinConfigs": mod_mixin_configs
+        attributes "FMLCorePlugin": mod_core_plugin
     }
 
 }
 
 mixin {
-    add sourceSets.main, "mixins.worldguard.refmap.json"
+    add sourceSets.main, "mixins.simpleworldguard.refmap.json"
 }
 
 tasks.withType(JavaCompile) {

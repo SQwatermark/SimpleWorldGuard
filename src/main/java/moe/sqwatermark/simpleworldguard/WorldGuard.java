@@ -1,6 +1,6 @@
-package moe.sqwatermark.worldguard;
+package moe.sqwatermark.simpleworldguard;
 
-import moe.sqwatermark.config.WorldGuardConfig;
+import moe.sqwatermark.simpleworldguard.config.WorldGuardConfig;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraftforge.common.config.Config;
@@ -12,6 +12,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,11 +25,11 @@ import java.util.Objects;
         version = WorldGuard.MOD_VERSION,
         acceptedMinecraftVersions = "[1.12.2]",
         acceptableRemoteVersions = "*",
-        guiFactory = "moe.sqwatermark.config.GuiFactory")
+        guiFactory = "moe.sqwatermark.simpleworldguard.config.GuiFactory")
 public class WorldGuard {
 
-    public static final String MOD_ID = "worldguard";
-    public static final String MOD_NAME = "WorldGuard";
+    public static final String MOD_ID = "simpleworldguard";
+    public static final String MOD_NAME = "SimpleWorldGuard";
     public static final String MOD_VERSION = "@VERSION@";
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -43,10 +44,7 @@ public class WorldGuard {
 
     //TODO 阻止水流动
     //TODO 阻止水和岩浆合成石头
-    //TODO 阻止苦力怕/TNT爆炸
     //TODO 允许部分方块放在任意地方（花草、红石等）
-
-    //TODO 高级计划：在某个区域内设置保护
 
     // 阻止作物生长
     @SubscribeEvent
@@ -90,7 +88,7 @@ public class WorldGuard {
     /**
      * 同步配置文件
      */
-    @Mod.EventBusSubscriber(modid = MOD_ID)
+    @Mod.EventBusSubscriber(modid = MOD_ID, value = Side.CLIENT)
     public static class ConfigSyncHandler {
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
